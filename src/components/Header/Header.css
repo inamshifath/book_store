@@ -1,0 +1,8 @@
+.navbar .menu li a.active {
+    background-color: white;
+    border: 2px solid rgb(138, 232, 138);
+    border-radius: 10px;
+    padding: 15px;
+    color: rgb(89, 211, 89);
+    font-weight: 700;
+  }
