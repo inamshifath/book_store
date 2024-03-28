@@ -25,16 +25,17 @@ const router = createBrowserRouter([
       {
         path:'/Listed_books',
         element:<Listed_books></Listed_books>,
-        loader: ()=> fetch('asset.json')
+        loader: ()=> fetch('../asset.json')
       },
       {
         path:'/Pages_to_Road',
-        element:<Pages_to_Road></Pages_to_Road>
+        element:<Pages_to_Road></Pages_to_Road>,
+        loader: ()=> fetch('../asset.json')
       },
       {
         path:'/Book_item/:bookId',
         element:<Book_item></Book_item>,
-        loader: ()=> fetch('asset.json')
+        loader: ()=> fetch('../asset.json')
       }
     ]
   },

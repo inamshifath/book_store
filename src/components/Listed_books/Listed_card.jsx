@@ -5,7 +5,7 @@ import { LuFileBarChart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
 const Listed_card = ({ book }) => {
-    const { image, bookName, author,tags,yearOfPublishing,publisher,totalPages,category,rating } = book;
+    const { image, bookName, author,tags,yearOfPublishing,publisher,totalPages,category,rating,bookId } = book;
     return (
         <div className="card gap-6 card-side bg-base-100 shadow-xl p-5">
             <figure ><img className='w-56  bg-gray-200 rounded-2xl p-6' src={image} alt="book"/></figure>
@@ -28,7 +28,7 @@ const Listed_card = ({ book }) => {
                 <div className='flex gap-3'>
                     <h2 className="text-blue-600 bg-blue-100 font-bold px-4 py-3 rounded-full text-xl">Catagory: {category}</h2>
                     <h2 className="text-orange-600 bg-orange-100 font-bold px-4 py-3 rounded-full text-xl"> Rating: {rating}</h2>
-                    <button className="px-4 py-3 text-3xl font-bold text-slate-50 bg-green-500 hover:bg-green-700 rounded-full"><Link to='/Book_item'>View the list</Link></button>
+                    <button className="px-4 py-3 text-3xl font-bold text-slate-50 bg-green-500 hover:bg-green-700 rounded-full"><Link to={`/Book_item/${bookId}`}>details</Link></button>
                 </div>
             </div>
         </div>
@@ -45,7 +45,8 @@ Listed_card.propTypes = {
         publisher: PropTypes.string.isRequired,
         totalPages: PropTypes.string.isRequired,
         category: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired
+        rating: PropTypes.string.isRequired,
+        bookId : PropTypes.string.isRequired,
     }).isRequired
 };
 

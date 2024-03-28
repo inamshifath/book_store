@@ -15,4 +15,21 @@ const saveBookinfo = (bookId) => {
     }
 }
 
-export{ getStoredBooks, saveBookinfo }
+const getStoredBookswish = () =>{
+    const storedBooksswish = localStorage.getItem('book-infoswish');
+    if(storedBooksswish){
+        return JSON.parse(storedBooksswish);
+    }
+    return [];
+}
+
+const saveBookinfowish = (bookId) => {
+    const storedBookswish = getStoredBookswish();
+    const exist = storedBookswish.find((storedBookId) => storedBookId === bookId); // Corrected comparison
+    if (!exist) {
+        storedBookswish.push(bookId);
+        localStorage.setItem('book-infoswish', JSON.stringify(storedBookswish));
+    }
+}
+
+export{ getStoredBooks, saveBookinfo, getStoredBookswish,saveBookinfowish}  

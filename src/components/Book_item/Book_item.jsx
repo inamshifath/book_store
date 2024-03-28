@@ -1,7 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { saveBookinfo } from "../../Utility/Utility";
+import { saveBookinfo,saveBookinfowish } from "../../Utility/Utility";
 
 const Book_item = () => {
     const books =useLoaderData();
@@ -10,22 +10,47 @@ const Book_item = () => {
     const book = books?.filter(book => book.bookId == bookId)
     console.log(book[0].image);
 
-    let read=false;
-    let wish = false;
+    const readlist = JSON.parse(localStorage.getItem('book-info')) || [];
+    const wishlist = JSON.parse(localStorage.getItem('book-infoswish')) || [];
+    
 
     const handleRead = () =>{
-        saveBookinfo(bookIdint);
-        toast('book added to the read list'); 
+        const isExistread = readlist.find(item => item === bookIdint);
+        const isExistwish = wishlist.find(item => item === bookIdint);
+
+        if(isExistread!== undefined){
+            toast('You have already read the book');
+        }
+        else if(isExistwish!== undefined){
+            saveBookinfo(bookIdint);
+            const updatedWishlist = wishlist.filter(id => id !== bookIdint);
+            localStorage.setItem('book-infoswish', JSON.stringify(updatedWishlist));
+            window.location.reload();  
+            toast('book added to the read list');
+        }
+        else{
+            saveBookinfo(bookIdint);
+            toast('book added to the read list'); 
+        }
     }
 
     const handleWish=() =>{
-        if(read==false && wish==false ){
-            toast('book added to whishlist');
-            wish=true;
+        const isExistread = readlist.find(item => item === bookIdint);
+        const isExistwish = wishlist.find(item => item === bookIdint);
+
+        if(isExistread!== undefined){
+            toast('You have already read the book');
+        }
+        else if(isExistwish!== undefined){
+            toast('Already in whishlist');
+            
         }
         else{
-            toast('alrady in a list');
+            saveBookinfowish(bookIdint);
+            window.location.reload();      
+            toast('book added to whishlist');
         } 
+        
     }
 
 

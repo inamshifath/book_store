@@ -1,13 +1,14 @@
 import { useLoaderData } from 'react-router-dom';
 import './Listed_books.css'
 import { useEffect, useState } from 'react';
-import { getStoredBooks } from '../../Utility/Utility';
+import { getStoredBooks,getStoredBookswish } from '../../Utility/Utility';
 import Listed_card from './Listed_card';
 
 
 const Listed_books = () => {
     const books = useLoaderData();
     const [listedBook, setlistedBook] =useState([]);
+    const [listedBookwish, setlistedBookwish] =useState([]);
 
     useEffect(()=>{
         const storedBookids = getStoredBooks();
@@ -20,7 +21,20 @@ const Listed_books = () => {
                 }
             }
             setlistedBook(BooksList);
-            console.log(BooksList);
+        }
+    },[books]);
+
+    useEffect(()=>{
+        const storedBookidswish = getStoredBookswish();
+        if(books.length > 0){
+            const BooksListwish =[];
+            for(const bookId of storedBookidswish){
+                const book = books.find( book => book.bookId == bookId)
+                if(book){
+                    BooksListwish.push(book)
+                }
+            }
+            setlistedBookwish(BooksListwish);
         }
     },[books]);
 
@@ -45,7 +59,7 @@ const Listed_books = () => {
 
                 <input type="radio" name="my_tabs_2" role="tab" className="tab text-2xl" aria-label="Wish list" checked />
                 <div role="tabpanel" className="tab-content space-y-5">
-                    { listedBook.map((book, index) => (<Listed_card key={index} book={book} />))}
+                    { listedBookwish.map((book, index) => (<Listed_card key={index} book={book} />))}
                 </div>
             </div>
         </div>
