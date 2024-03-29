@@ -55,9 +55,9 @@ const Book_item = () => {
 
 
     return (
-        <div className="container mx-auto mt-10 flex gap-10 mb-32">
-            <div className="w-[50%]">
-                <img className="w-fit  bg-gray-200 p-16 rounded-2xl" src={book[0].image} alt="" />
+        <div className="container mx-auto mt-10 lg:flex gap-10 mb-32">
+            <div className="w-[110%] h-[100%]">
+                <img className="w-[100%] bg-gray-200 p-16 rounded-2xl" src={book[0].image} alt="" />
 
             </div>
             <div className="space-y-6">

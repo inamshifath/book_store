@@ -4,11 +4,12 @@ import { CiStar } from "react-icons/ci";
 
 const Book_cark = ({book}) => {
     const {bookId,image,bookName,author,category,rating,tags}=book;
+    console.log('book card',book);
 
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl p-5 border-2 border-gray-400 space-y-5">
             <Link to={`/Book_item/${bookId}`}>
-                <figure className='bg-gray-300 rounded-2xl'><img className='w-44' src={image} alt="Shoes" /></figure>
+                <figure className='bg-[#f3f3f3] rounded-2xl py-2'><img className='w-44' src={image} alt="Shoes" /></figure>
                 <div className=" space-y-5 mt-5">
                     <div className='flex gap-6'>
                         <p className='text-green-600 bg-green-100 font-bold px-3 rounded-full'>{tags[0]} </p>

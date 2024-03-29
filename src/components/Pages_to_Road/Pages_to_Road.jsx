@@ -1,27 +1,25 @@
-// import { useLoaderData } from "react-router-dom";
-// import { getStoredBooks} from '../../Utility/Utility';
-// import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import { useLoaderData } from "react-router-dom";
+import { getStoredBooks} from '../../Utility/Utility';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 
 const Pages_to_Road = () => {
-//   const allbooks = useLoaderData();
-//   const books = getStoredBooks();
-//   const id = books.map(item => item.bookId);
-//   console.log(id);
-//   const item = allbooks.map( book => book.bookId == id);
-//   console.log(item);
+  const allbooks = useLoaderData();
+  const books = getStoredBooks();
 
+  const filteredData = allbooks.filter(item => books.includes(item.bookId));
+  
   return (
     <div className="container mx-auto mt-20">
-        <h1 className="text-4xl font-serif font-bold text-center mb-6">given a bar chart using ratting </h1>
-        {/* <div className="flex justify-center">
-            <BarChart width={600} height={300} data={} >
-                <XAxis dataKey="rating" /> 
-                <YAxis />
-                <Tooltip />
-                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Bar dataKey="rating" fill="#8884d8" barSize={30} /> 
-            </BarChart>
-        </div> */}
+        <h1 className="text-4xl font-serif font-bold text-center mb-6">given a bar chart using page number </h1>
+        <div className="flex justify-center">
+              <BarChart width={600} height={600} data={filteredData} >
+                  <XAxis dataKey="bookName" /> 
+                  <YAxis />
+                  <Tooltip />
+                  <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                  <Bar dataKey="totalPages" fill="#8884d8" barSize={60} /> 
+              </BarChart>
+        </div>
       
     </div>
   );
