@@ -5,7 +5,7 @@ import Book_cark from "./Book_cark";
 const Home = () => {
     const [books, setbooks] = useState([]);
     useEffect(()=>{
-        fetch('../../../asset.json')
+        fetch('/asset.json')
             .then(res=>res.json())
             .then(data => setbooks(data));
     },[])
